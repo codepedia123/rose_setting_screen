@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;800&family=Montserrat:ital,wght@0,300&display=swap" rel="stylesheet">
+    <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js" type="text/javascript"></script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .profile-card {
+            background-color: #96C2F7;
+            width: 90%;
+            border-radius: 30px;
+            padding: 20px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            color: white;
+            box-sizing: border-box;
+        }
+        
+        .profile-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Make it fully circular */
+    background-color: #FFFFFF;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ensures the image stays within the circular border */
+}
+
+
+        
+        .profile-info h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 300;
+        }
+        
+        .profile-info p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            font-weight: 300;
+        }
+        
+        .settings-title {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #9E9E9E;
+            font-weight: 300;
+        }
+        
+        .settings-option {
+            width: 90%;
+            border-radius: 30px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            color: white;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-weight: 300;
+            cursor: pointer;
+        }
+        
+        .settings-option img {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+        }
+        
+        .language { background-color: #96C2F7; }
+        .notifications { background-color: #FFDC80; }
+        .region { background-color: #FF9999; }
+        .bookmarks { background-color: #7A68EB; }
+        .recommendations { background-color: #33CF90; }
+        .data-usage { background-color: #DEBF9B; }
+        .privacy-policy { background-color: #96C2F7; }
+        .terms { background-color: #FF9999; }
+        .contact { background-color: #7A68EB; }
+        .logout { background-color: #33CF90; }
+        
+        .loading-message {
+            display: none;
+            font-size: 14px;
+            color: #333;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-card">
+        <div class="profile-pic" id="profile-pic">
+            <img src="https://i.pinimg.com/564x/de/6e/8d/de6e8d53598eecfb6a2d86919b267791.jpg" alt="Profile Picture" width="60">
+        </div>
+        <div class="profile-info">
+            <h2 id="profile-name">My Name</h2>
+            <p id="profile-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="addddfccdbc8c8c3edcac0ccc4c183cec2c0">[email&#160;protected]</a></p>
+        </div>
+    </div>
+
+    <div class="settings-title" id="settings-title">SETTINGS</div>
+
+    <div class="settings-option language" onclick="postMessage('Language')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/globe.png" alt="Language Icon">
+        <span class="option-text" id="language">Language</span>
+    </div>
+    <div class="settings-option notifications" onclick="postMessage('Notifications')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/appointment-reminders.png" alt="Notifications Icon">
+        <span class="option-text" id="notifications">Notifications</span>
+    </div>
+    <div class="settings-option region" onclick="postMessage('Region')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/world-map.png" alt="Region Icon">
+        <span class="option-text" id="region">Region</span>
+    </div>
+    <div class="settings-option bookmarks" onclick="postMessage('Bookmarks')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/bookmark-ribbon.png" alt="Bookmarks Icon">
+        <span class="option-text" id="bookmarks">Bookmarks</span>
+    </div>
+    <div class="settings-option recommendations" onclick="postMessage('Recommendations')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/idea.png" alt="Recommendations Icon">
+        <span class="option-text" id="recommendations">Recommendations</span>
+    </div>
+    <div class="settings-option data-usage" onclick="postMessage('Data Usage')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/database.png" alt="Data Usage Icon">
+        <span class="option-text" id="data-usage">Data Usage</span>
+    </div>
+    <div class="settings-option privacy-policy" onclick="postMessage('Privacy Policy')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/shield.png" alt="Privacy Policy Icon">
+        <span class="option-text" id="privacy-policy">Privacy Policy</span>
+    </div>
+    <div class="settings-option terms" onclick="postMessage('Terms of Services')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/agreement.png" alt="Terms of Services Icon">
+        <span class="option-text" id="terms">Terms of Services</span>
+    </div>
+    <div class="settings-option contact" onclick="postMessage('Contact Us')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/phone-disconnected.png" alt="Contact Us Icon">
+        <span class="option-text" id="contact">Contact Us</span>
+    </div>
+    <div class="settings-option logout" onclick="postMessage('Log Out')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/logout-rounded-up.png" alt="Log Out Icon">
+        <span class="option-text" id="logout">Log Out</span>
+    </div>
+
+    <div class="loading-message" id="loading-message">Loading...</div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function postMessage(message) {
+            ThunkableWebviewerExtension.postMessage(message);
+        }
+
+        ThunkableWebviewerExtension.receiveMessage(function(message) {
+            const loadingMessage = document.getElementById("loading-message");
+
+            if (message.startsWith('#')) {
+                const language = message.slice(1);
+                loadingMessage.style.display = 'block';
+
+                setTimeout(() => {
+                    translatePage(language);
+                    loadingMessage.style.display = 'none';
+                }, 500);
+            } else if (message.startsWith('%')) {
+                const profilePicUrl = message.slice(1);
+                document.querySelector('#profile-pic img').src = profilePicUrl;
+            } else if (message.startsWith('&')) {
+                const profileName = message.slice(1);
+                document.getElementById('profile-name').innerText = profileName;
+            } else if (message.startsWith('*')) {
+                const email = message.slice(1);
+                document.getElementById('profile-email').innerText = email;
+            }
+        });
+
+        function translatePage(language) {
+            const translations = {
+                en: {
+                    "settings-title": "SETTINGS",
+                    "language": "Language",
+                    "notifications": "Notifications",
+                    "region": "Region",
+                    "bookmarks": "Bookmarks",
+                    "recommendations": "Recommendations",
+                    "data-usage": "Data Usage",
+                    "privacy-policy": "Privacy Policy",
+                    "terms": "Terms of Services",
+                    "contact": "Contact Us",
+                    "logout": "Log Out"
+                },
+                zh: {
+                    "settings-title": "设置",
+                    "language": "语言",
+                    "notifications": "通知",
+                    "region": "地区",
+                    "bookmarks": "书签",
+                    "recommendations": "推荐",
+                    "data-usage": "数据使用",
+                    "privacy-policy": "隐私政策",
+                    "terms": "服务条款",
+                    "contact": "联系我们",
+                    "logout": "登出"
+                },
+                zht: {
+                    "settings-title": "設定",
+                    "language": "語言",
+                    "notifications": "通知",
+                    "region": "地區",
+                    "bookmarks": "書籤",
+                    "recommendations": "推薦",
+                    "data-usage": "數據使用",
+                    "privacy-policy": "隱私政策",
+                    "terms": "服務條款",
+                    "contact": "聯絡我們",
+                    "logout": "登出"
+                }
+            };
+
+            const selectedLang = translations[language] || translations.en;
+            for (const id in selectedLang) {
+                document.getElementById(id).innerText = selectedLang[id];
+            }
+        }
+    </script>
+</body>
+</html>
